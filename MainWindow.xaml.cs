@@ -36,15 +36,14 @@ namespace slightly_cooler_sound_board
             dialog.Multiselect = true;
             // Show open file dialog box
             bool? result = dialog.ShowDialog();
-            Trace.WriteLine("AAAAAAAAAAAAAA");
             // Process open file dialog box results
 
             if (result == true)
             {
-                foreach (string name in dialog.FileNames) 
+                for (int i=0;i<dialog.FileNames.Length;i++) 
                 {
-                    MusicBlock musicBlock = new MusicBlock(name);
-                    musicBlock.draw(stackPanel);
+                    MusicBlock musicBlock = new MusicBlock(dialog.FileNames[i], dialog.SafeFileNames[i]);
+                    musicBlock.Draw(stackPanel);
                 }
 
             }
