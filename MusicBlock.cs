@@ -18,39 +18,48 @@ namespace slightly_cooler_sound_board
         private string _fileName {  get; set; }
         private string _filePath {  get; set; }
         private Button _button { get; set; }
+        private Slider _slider { get; set; }
 
-        public MusicBlock(string fileName)
+        public MusicBlock(string filePath, string fileName)
         {
             this._fileName = fileName;
-            this._button = new Button();
-            this._button.Height=50;
-            this._button.Height=50;
-            this._button.Content=fileName;
+            this._filePath = filePath;
+
+            TextBlock textBlock = new()
+            {
+                Text = fileName
+            };
+
+            _slider = new Slider();
+            _slider.Minimum = 0;
+            _slider.Maximum = 100;
+            _slider.Value = 100;
+
+            StackPanel stackPanel = new();
+            stackPanel.Children.Add(textBlock);
+            stackPanel.Children.Add(_slider);
+
+            this._button = new Button
+            {
+                Content = stackPanel
+            };
             this._button.Click += clickPlay;
-            Trace.WriteLine(this._fileName);
         }
 
 
-        public void draw(StackPanel motherGroupBox) 
+        public void Draw(StackPanel motherGroupBox) 
         {
             motherGroupBox.Children.Add(this._button);
         }
 
         private void clickPlay(object sender, RoutedEventArgs e) 
         {
-            /*SoundPlayer soundPlayer = new SoundPlayer(_fileName);
-            soundPlayer.Stream = System.IO.File.OpenRead(_fileName);
-            if (soundPlayer.Stream.CanSeek)
-            {
-                soundPlayer.Stream.Seek(0, SeekOrigin.Begin);
-                
-                soundPlayer.Play();
 
-            }*/
             MediaPlayer mediaPlayer = new MediaPlayer();
-            mediaPlayer.Open(new Uri(this._fileName));
-            mediaPlayer.Volume = 0.1;
+            mediaPlayer.Open(new Uri(this._filePath));
+            mediaPlayer.Volume =_slider.Value/100f;
             mediaPlayer.Play();
+
         }
 
     }
