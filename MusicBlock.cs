@@ -41,10 +41,10 @@ namespace slightly_cooler_sound_board
             
             Style buttonStyle = new Style(typeof(MusicBlock), Application.Current.FindResource(typeof(Button)) as Style);
             this.Style = buttonStyle;
-            this.Width = 100;
+            /*this.Width = 100;
             this.Height = 100;
             this.HorizontalAlignment = HorizontalAlignment.Stretch;
-            this.VerticalAlignment = VerticalAlignment.Stretch;
+            this.VerticalAlignment = VerticalAlignment.Stretch;*/
             this.Content = stackPanel;
             this.Click += clickPlay;
         }
