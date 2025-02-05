@@ -13,11 +13,10 @@ using System.Windows.Media;
 
 namespace slightly_cooler_sound_board
 {
-    internal class MusicBlock 
+    internal class MusicBlock : Button
     {
         private string _fileName {  get; set; }
         private string _filePath {  get; set; }
-        private Button _button { get; set; }
         private Slider _slider { get; set; }
 
         public MusicBlock(string filePath, string fileName)
@@ -39,17 +38,23 @@ namespace slightly_cooler_sound_board
             stackPanel.Children.Add(textBlock);
             stackPanel.Children.Add(_slider);
 
-            this._button = new Button
-            {
-                Content = stackPanel
-            };
-            this._button.Click += clickPlay;
+            
+            Style buttonStyle = new Style(typeof(MusicBlock), Application.Current.FindResource(typeof(Button)) as Style);
+            this.Style = buttonStyle;
+            this.Width = 100;
+            this.Height = 100;
+            this.HorizontalAlignment = HorizontalAlignment.Stretch;
+            this.VerticalAlignment = VerticalAlignment.Stretch;
+            this.Content = stackPanel;
+            this.Click += clickPlay;
         }
+
+
 
 
         public void Draw(StackPanel motherGroupBox) 
         {
-            motherGroupBox.Children.Add(this._button);
+            motherGroupBox.Children.Add(this);
         }
 
         private void clickPlay(object sender, RoutedEventArgs e) 
