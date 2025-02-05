@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -47,6 +48,13 @@ namespace slightly_cooler_sound_board
                 }
 
             }
+        }
+
+
+        private void SaveBeforeClosing(object sender, CancelEventArgs e) 
+        {
+            WorkingWithFiles.CreateSaveFile(stackPanel);
+            Trace.WriteLine("closing");
         }
     }
 }

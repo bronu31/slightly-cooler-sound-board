@@ -13,7 +13,7 @@ using System.Windows.Media;
 
 namespace slightly_cooler_sound_board
 {
-    internal class MusicBlock
+    internal class MusicBlock 
     {
         private string _fileName {  get; set; }
         private string _filePath {  get; set; }
@@ -60,6 +60,11 @@ namespace slightly_cooler_sound_board
             mediaPlayer.Volume =_slider.Value/100f;
             mediaPlayer.Play();
 
+
+        }
+
+        public override string ToString() {
+        return this._fileName + this._filePath + this._slider.GetValue;
         }
 
     }
