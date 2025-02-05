@@ -43,7 +43,7 @@ namespace slightly_cooler_sound_board
                 for (int i=0;i<dialog.FileNames.Length;i++) 
                 {
                     MusicBlock musicBlock = new MusicBlock(dialog.FileNames[i], dialog.SafeFileNames[i]);
-                    musicBlock.Draw(stackPanel);
+                    stackPanel.Children.Add(musicBlock);
                 }
 
             }
