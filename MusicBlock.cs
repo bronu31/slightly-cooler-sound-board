@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace slightly_cooler_sound_board
@@ -41,13 +42,17 @@ namespace slightly_cooler_sound_board
 
             this._button = new Button
             {
+                Width =150,
+                Height =150,
                 Content = stackPanel
             };
+            
             this._button.Click += clickPlay;
+            this._button.Margin= new Thickness(5);
         }
 
 
-        public void Draw(StackPanel motherGroupBox) 
+        public void Draw(WrapPanel motherGroupBox) 
         {
             motherGroupBox.Children.Add(this._button);
         }
