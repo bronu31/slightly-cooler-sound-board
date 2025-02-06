@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:slightly_cooler_sound_board"
         mc:Ignorable="d"
+        Closing="SaveBeforeClosing"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <ToolBarTray HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="431">
