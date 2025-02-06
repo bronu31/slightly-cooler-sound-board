@@ -1,23 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Media;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Newtonsoft.Json;
 
 namespace slightly_cooler_sound_board
-{
+{[JsonObject(MemberSerialization.OptIn)]
     internal class MusicBlock : Button
     {
+        [JsonProperty(PropertyName = "name")]
         private string _fileName {  get; set; }
+        [JsonProperty(PropertyName = "path")]
         private string _filePath {  get; set; }
+        [Newtonsoft.Json.JsonIgnore]
         private Slider _slider { get; set; }
+        //[JsonPropertyName("volume")]
+        [JsonProperty(PropertyName = "volume")]
+        public int SliderValue => (int)(_slider?.Value ?? 0);
+
 
         public MusicBlock(string filePath, string fileName)
         {
