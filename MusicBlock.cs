@@ -6,7 +6,9 @@ using System.Windows.Media;
 using Newtonsoft.Json;
 
 namespace slightly_cooler_sound_board
-{[JsonObject(MemberSerialization.OptIn)]
+{
+[JsonObject(MemberSerialization.OptIn)]
+
     internal class MusicBlock : Button
     {
         [JsonProperty(PropertyName = "name")]
