@@ -22,7 +22,7 @@ namespace slightly_cooler_sound_board
         public int SliderValue => (int)(_slider?.Value ?? 0);
 
 
-        public MusicBlock(string filePath, string fileName)
+        public MusicBlock(string filePath, string fileName, int volume)
         {
             this._fileName = fileName;
             this._filePath = filePath;
@@ -35,7 +35,7 @@ namespace slightly_cooler_sound_board
             _slider = new Slider();
             _slider.Minimum = 0;
             _slider.Maximum = 100;
-            _slider.Value = 100;
+            _slider.Value = volume==-1 ? 100 : volume;
 
             StackPanel stackPanel = new();
             stackPanel.Children.Add(textBlock);
@@ -46,12 +46,6 @@ namespace slightly_cooler_sound_board
         }
 
 
-
-
-        public void Draw(StackPanel motherGroupBox) 
-        {
-            motherGroupBox.Children.Add(this);
-        }
 
         private void clickPlay(object sender, RoutedEventArgs e) 
         {

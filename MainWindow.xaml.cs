@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,10 @@ namespace slightly_cooler_sound_board
         {
 
             InitializeComponent();
+            if (File.Exists("saved sounds.json"))
+            {
+                WorkingWithFiles.ReadSaveFile(stackPanel);
+            }
 
         }
 
@@ -43,7 +48,7 @@ namespace slightly_cooler_sound_board
             {
                 for (int i=0;i<dialog.FileNames.Length;i++) 
                 {
-                    MusicBlock musicBlock = new MusicBlock(dialog.FileNames[i], dialog.SafeFileNames[i]);
+                    MusicBlock musicBlock = new MusicBlock(dialog.FileNames[i], dialog.SafeFileNames[i], -1);
                     stackPanel.Children.Add(musicBlock);
                 }
 
