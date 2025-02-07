@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using Newtonsoft.Json;
 
@@ -41,10 +42,11 @@ namespace slightly_cooler_sound_board
             stackPanel.Children.Add(textBlock);
             stackPanel.Children.Add(_slider);
 
+
             this.Content = stackPanel;
             this.Click += clickPlay;
+            this.Margin= new Thickness(5);
         }
-
 
 
         private void clickPlay(object sender, RoutedEventArgs e) 

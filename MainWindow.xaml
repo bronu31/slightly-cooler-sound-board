@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:slightly_cooler_sound_board"
         mc:Ignorable="d"
         Closing="SaveBeforeClosing"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" MinHeight="450" MinWidth="800">
     <Grid>
         <ToolBarTray HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="431">
             <ToolBar Band="1" BandIndex="1">
@@ -15,13 +15,9 @@
                 </Button>
             </ToolBar>
         </ToolBarTray>
-        <!--<GroupBox Header="blocks go here" Margin="0,42,161,129" AutomationProperties.Name="MotherBox">
-            
-        </GroupBox>-->
-        
-            <ScrollViewer Margin="0,82,0,0">
+        <ScrollViewer Margin="0,82,0,0">
 
-            <StackPanel x:Name="stackPanel" AutomationProperties.Name="StackThatHoldsEverythings" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <WrapPanel x:Name="grid" AutomationProperties.Name="StackThatHoldsEverythings"/>
         </ScrollViewer>
     </Grid>
 </Window>
