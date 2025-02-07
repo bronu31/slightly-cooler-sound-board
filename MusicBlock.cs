@@ -1,27 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Media;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using Newtonsoft.Json;
 
 namespace slightly_cooler_sound_board
 {
-    internal class MusicBlock
-    {
-        private string _fileName {  get; set; }
-        private string _filePath {  get; set; }
-        private Button _button { get; set; }
-        private Slider _slider { get; set; }
+[JsonObject(MemberSerialization.OptIn)]
 
-        public MusicBlock(string filePath, string fileName)
+    internal class MusicBlock : Button
+    {
+        [JsonProperty(PropertyName = "name")]
+        private string _fileName {  get; set; }
+        [JsonProperty(PropertyName = "path")]
+        private string _filePath {  get; set; }
+        [Newtonsoft.Json.JsonIgnore]
+        private Slider _slider { get; set; }
+        //[JsonPropertyName("volume")]
+        [JsonProperty(PropertyName = "volume")]
+        public int SliderValue => (int)(_slider?.Value ?? 0);
+
+
+        public MusicBlock(string filePath, string fileName, int volume)
         {
             this._fileName = fileName;
             this._filePath = filePath;
@@ -34,28 +36,18 @@ namespace slightly_cooler_sound_board
             _slider = new Slider();
             _slider.Minimum = 0;
             _slider.Maximum = 100;
-            _slider.Value = 100;
+            _slider.Value = volume==-1 ? 100 : volume;
 
             StackPanel stackPanel = new();
             stackPanel.Children.Add(textBlock);
             stackPanel.Children.Add(_slider);
 
-            this._button = new Button
-            {
-                Width =150,
-                Height =150,
-                Content = stackPanel
-            };
-            
-            this._button.Click += clickPlay;
-            this._button.Margin= new Thickness(5);
+
+            this.Content = stackPanel;
+            this.Click += clickPlay;
+            this.Margin= new Thickness(5);
         }
 
-
-        public void Draw(WrapPanel motherGroupBox) 
-        {
-            motherGroupBox.Children.Add(this._button);
-        }
 
         private void clickPlay(object sender, RoutedEventArgs e) 
         {
@@ -65,6 +57,11 @@ namespace slightly_cooler_sound_board
             mediaPlayer.Volume =_slider.Value/100f;
             mediaPlayer.Play();
 
+
+        }
+
+        public override string ToString() {
+        return this._fileName + this._filePath + this._slider.GetValue;
         }
 
     }
