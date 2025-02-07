@@ -11,7 +11,7 @@ namespace slightly_cooler_sound_board
 {
     internal class WorkingWithFiles
     {
-        public static void CreateSaveFile(StackPanel stack)
+        public static void CreateSaveFile(WrapPanel stack)
         {
 
             ArrayList blocks = new ArrayList(stack.Children.OfType<MusicBlock>().ToList());
@@ -19,7 +19,7 @@ namespace slightly_cooler_sound_board
             File.WriteAllText("saved sounds.json", json);
         }
 
-        public static void ReadSaveFile(StackPanel stack)
+        public static void ReadSaveFile(WrapPanel stack)
         {
             string json = File.ReadAllText("saved sounds.json");
             JArray blocks = JArray.Parse(json);

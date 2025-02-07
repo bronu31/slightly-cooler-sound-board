@@ -26,7 +26,7 @@ namespace slightly_cooler_sound_board
             InitializeComponent();
             if (File.Exists("saved sounds.json"))
             {
-                WorkingWithFiles.ReadSaveFile(stackPanel);
+                WorkingWithFiles.ReadSaveFile(grid);
             }
 
         }
@@ -49,7 +49,7 @@ namespace slightly_cooler_sound_board
                 for (int i=0;i<dialog.FileNames.Length;i++) 
                 {
                     MusicBlock musicBlock = new MusicBlock(dialog.FileNames[i], dialog.SafeFileNames[i], -1);
-                    stackPanel.Children.Add(grid);
+                    grid.Children.Add(musicBlock);
                 }
 
             }
@@ -58,7 +58,7 @@ namespace slightly_cooler_sound_board
 
         private void SaveBeforeClosing(object sender, CancelEventArgs e) 
         {
-            WorkingWithFiles.CreateSaveFile(stackPanel);
+            WorkingWithFiles.CreateSaveFile(grid);
             Trace.WriteLine("closing");
         }
     }
